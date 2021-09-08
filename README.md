@@ -45,16 +45,16 @@ You can modify hyperparameters of PEARL from `./configs/Navigation_MPC.json` and
 
 Additional parameters introduced in our algorithm should be modified manually in `./rlkit/envs/navi_toy.py`.
 ```python
-        # ------------------------------ Hyperparameter setup ---------------------------------
-        # Main hyperparameters
-        self._obs_reward = 20.
-        self._goal_reward = 10.
-        self.eps = .8
+# ------------------------------ Hyperparameter setup ---------------------------------
+# Main hyperparameters
+self._obs_reward = 20.
+self._goal_reward = 10.
+self.eps = .8
          
-        # Initial and goal state
-        self._goal = np.array([3.5, -3.5])
-        self.init_state = np.array([-4.5, 4.5, -np.pi / 8.])
-        # --------------------------------------------------------------------------------------
+# Initial and goal state
+self._goal = np.array([3.5, -3.5])
+self.init_state = np.array([-4.5, 4.5, -np.pi / 8.])
+# --------------------------------------------------------------------------------------
 ```
 - `self._obs_reward` : collision penalty when the agent collides with static or dynamic obstacles
 - `self._goal_reward` : reaching bonus when the agent is nearby goal
