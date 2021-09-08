@@ -1,0 +1,26 @@
+{
+    "env_name": "Navigation_MPC",
+    "n_train_tasks": 180,
+    "n_eval_tasks": 25,
+    "env_params": {
+        "n_tasks": 205,
+        "ep_len": 80,
+        "Nt": 10
+    }
+    ,
+    "algo_params": {
+        "num_initial_steps": 200,
+        "num_steps_prior": 200,
+        "num_steps_posterior": 0,
+        "num_extra_rl_steps_posterior": 200,
+        "num_train_steps_per_itr": 750,
+        "num_steps_per_eval": 100,
+        "max_path_length": 80,
+        "reward_scale": 100.0,
+        "kl_lambda": 0.1,
+        "num_iterations": 1000,
+        "use_MPC": 0,
+        "N_train": 80,
+        "N_test": 200
+    }
+}
