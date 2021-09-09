@@ -376,6 +376,9 @@ def fit_GP_adaptive(obs, next_obs, pred, pred_cov, max_data_size=10, min_data_si
                 adaptive_set.append(i)
                 gp_effective[i] = 1
 
+    adaptive_set = [i for i in range(num_people)]
+    gp_effective = np.ones(num_people)
+
     if len(adaptive_set) < 1:
         return pred, pred_cov, gp_effective
 
