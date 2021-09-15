@@ -34,7 +34,7 @@ class NavigationToyEnv(Env):
         # Main hyperparameters
         self._obs_reward = 20.
         self._goal_reward = 10.
-        self.eps = .8
+        self.eps = .2
          
         # Initial and goal state
         self._goal = np.array([3.5, -3.5])

@@ -28,7 +28,7 @@ As mentioned above, you can easily import requirements if you are working on con
 ```
 $ conda env create -f mpc_pearl.yml && conda activate mpc_pearl
 ```
-We provide our best test result along with network weights under `./output/Navigation_MPC/eps08`. You can visualize trained agent navigating in the modeled restaurant with:
+We provide our best test result along with network weights under `./output/Navigation_MPC/eps02`. You can visualize trained agent navigating in the modeled restaurant with:
 ```
 $ python test_navigation.py --video --num_trajs=3
 ```
@@ -94,7 +94,7 @@ Make sure to copy trained weights under `./out_of_distribution_test/output/Navig
 ## 4. Build New Tasks
 
 Our environment runs with pre-computed path of each dynamic obstacles. 
-You can re-generated these scenarios based on our setups by deleting `U.npy` and `X.npy` under `./scenarios` and `./scenarios_out_of_distribution`.
+You can re-generated these scenarios based on our setups by deleting `U.npy` and `X.npy` under `./scenarios`.
 
 To promote faster traing, we trained GPR offline and thus GPR should be re-trained with following command:
 ```
