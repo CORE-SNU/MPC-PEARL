@@ -47,9 +47,7 @@ class MetaRLAlgorithm(metaclass=abc.ABCMeta):
             render_eval_paths=False,
             dump_eval_paths=False,
             plotter=None,
-            use_MPC=False,
-            N_train=80,
-            N_test=100
+            use_MPC=False
         ):
         """
         :param env: training env
@@ -129,8 +127,6 @@ class MetaRLAlgorithm(metaclass=abc.ABCMeta):
         self._exploration_paths = []
         self.mpc_forces = None
         self.gp = None
-        self.N_train = N_train
-        self.N_test = N_test
         
     def make_exploration_policy(self, policy):
          return policy

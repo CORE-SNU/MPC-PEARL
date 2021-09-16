@@ -19,8 +19,6 @@
         "reward_scale": 100.0,
         "kl_lambda": 0.1,
         "num_iterations": 3000,
-        "use_MPC": 1,
-        "N_train": 80,
-        "N_test": 200
+        "use_MPC": 1
     }
 }
