@@ -106,11 +106,21 @@ python gen_GP.py ./configs/Navigation_MPC.json
 Now it is ready to run algorithm on new tasks.
 
 
-## 5. Troubleshooting
+## 5. UCY dataset
+
+In addition, we introduce sidwalk environment with data from [UCY dataset][UCY].
+You should unzip the UCY folder, which has the same structure as MPC-PEARL directory.
+To run an experiment, use the same code with another configuration file.
+```
+python launch_experiment.py ./configs/UCY_MPC.json
+```
+
+
+## 6. Troubleshooting
 
 Most commonly reported problems we found are follows:
 
-### 5.1 Memory error when running `test_navigation.py` with `--video` option
+### 6.1 Memory error when running `test_navigation.py` with `--video` option
 ```
 OSError: [Errno 12] Cannot allocate memory
 ```
@@ -131,4 +141,5 @@ sudo sysctl -p
 [FORCESPRO_manual]: https://forces.embotech.com/Documentation/
 [pandas]: https://pandas.pydata.org/docs/getting_started/install.html
 [PEARL]: https://github.com/katerakelly/oyster
+[UCY]: https://github.com/Habiba-Amroune/ETH-UCY-Preprocessing
 [issue1]: github.com/openai/gym/issues/110#issuecomment-220672405
