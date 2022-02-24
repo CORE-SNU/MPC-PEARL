@@ -109,8 +109,13 @@ Now it is ready to run algorithm on new tasks.
 ## 5. UCY dataset
 
 In addition, we introduce sidwalk environment with data from [UCY dataset][UCY].
-You should unzip the UCY folder, which has the same structure as MPC-PEARL directory.
-To run an experiment, use the same code with another configuration file.
+Unzip the UCY folder and move into `./ucy` which has the same structure as MPC-PEARL directory.
+
+To run an experiment, first build the offline GP dataset.
+```
+python gen_GP.py ./configs/UCY_MPC.json
+```
+Then, use the same code with another configuration file.
 ```
 python launch_experiment.py ./configs/UCY_MPC.json
 ```
