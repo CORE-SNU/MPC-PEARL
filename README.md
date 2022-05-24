@@ -5,6 +5,7 @@ This repository includes an official python implementation of **MPC-PEARL** algo
 for Mobile Robots in Dynamic Environments][paper_link]**
 
 
+
 ## 1. Requirements
 Our implementation is based on official repository of [PEARL][PEARL], and followings must be installed to run our implementation:
 - **[PyTorch][Pytorch]**
@@ -18,6 +19,7 @@ To install FORCESPRO, you first need to get license. If you are currently workin
 In addition, to run our result analysis tool you need to install additional packages such as [pandas][pandas]. For convenience, we summarized our test environment into `mpc_pearl.yml` so that result can be easily reproduced.
 
 Our code is tested on both Ubuntu 18.04 and Ubuntu 20.04.
+
 
 
 ## 2. Quick Start
@@ -34,6 +36,7 @@ We provide network weights of best-performing agent under `./output/Navigation_M
 python test_navigation.py ./configs/Navigation_MPC ./output/Navigation_MPC/eps02 --video --num_trajs=3
 ```
 Navigation video over 25 distinct tasks will be generated under base directory as `.gif` format along with summary of performance metric in `./results_total_[TEST_TIME].csv`.
+
 
 
 ## 3. Solve/Evaluate
@@ -63,6 +66,7 @@ We are motivated to further aggregate these into `.json` file, and will be updat
 
 In addition, vanilla PEARL algorithm can be simply trained by using `./configs/Navivation_WO_MPC.json`
 
+
 ### 3.2 Experiment Summary
 During experiment, summary of each training epoch and network weights will be saved under `./output/Navigation_MPC/[EXP_START_TIME]` directory. To see training curve for various peformance metrics, run the following:
 ```
@@ -80,6 +84,7 @@ Plots will contain following performance metrics:
 - Navigation reward : distance-based reward component
 - Collisions : number of collisions
 
+
 ### 3.3 Evaluation and Visualization
 To see how trained agent navigates among dynamic environment, run following line:
 ```
@@ -93,6 +98,7 @@ Followings can be given as options for `test_navigation.py`
 - `--num_trajs`: Number of adaptation steps to use. Default = 10
 
 
+
 ## 4. Build New Tasks
 
 Our environment runs with pre-computed path of each dynamic obstacles. 
@@ -104,6 +110,7 @@ python gen_GP.py ./configs/Navigation_MPC.json
 ```
 
 Now it is ready to run algorithm on new tasks.
+
 
 
 ## 5. UCY dataset
@@ -121,9 +128,11 @@ python launch_experiment.py ./configs/UCY_MPC.json
 ```
 
 
+
 ## 6. Troubleshooting
 
 Most commonly reported problems we found are follows:
+
 
 ### 6.1 Memory error when running `test_navigation.py` with `--video` option
 ```
