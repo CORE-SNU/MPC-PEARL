@@ -2,7 +2,7 @@ MPC-PEARL
 ====================================================
 
 This repository includes an official python implementation of **MPC-PEARL** algorithm that presented in **[Infusing Model Predictive Control into Meta-Reinforcement Learning
-for Mobile Robots in Dynamic Environments][paper_link]**
+for Mobile Robots in Dynamic Environments][paper_link]**.
 
 
 
@@ -14,11 +14,11 @@ Our implementation is based on official repository of [PEARL][PEARL], and follow
 - **[pickle5][pickle5]**
 - **[FORCESPRO][FORCESPRO]**
 
-To install FORCESPRO, you first need to get license. If you are currently working as a researcher you can request academic license. For detailed installation guide refer to [official manual][FORCESPRO_manual].
+To install FORCESPRO, you first need to get a license. If you are currently working as a researcher you can request academic license. For detailed installation guide refer to [official manual][FORCESPRO_manual].
 
-In addition, to run our result analysis tool you need to install additional packages such as [pandas][pandas]. For convenience, we summarized our test environment into `mpc_pearl.yml` so that result can be easily reproduced.
+In addition, to run our result analysis tool you need to install additional packages such as [pandas][pandas]. For convenience, we have summarized our test environment into `mpc_pearl.yml` so that the results presented in our paper may be easily reproduced.
 
-Our code is tested on both Ubuntu 18.04 and Ubuntu 20.04.
+Our code was successfully tested on both Ubuntu 18.04 and Ubuntu 20.04.
 
 
 
@@ -86,13 +86,13 @@ Plots will contain following performance metrics:
 
 
 ### 3.3 Evaluation and Visualization
-To see how trained agent navigates among dynamic environment, run following line:
+To see how the trained agent navigates among dynamic environments, run the following line:
 ```
 python test_navigation.py ./configs/Navigation_MPC.json ./output/Navigation_MPC/[EXP_WANT_TO_VISUALIZE]
 ```
-Note that configuration file should match between trainig and testing. Result summary will appear in `./results_total_[TEST_TIME].csv`
+Note that the configuration file should remain the same between trainig and testing. The summary of the result appears in `./results_total_[TEST_TIME].csv`
 
-Followings can be given as options for `test_navigation.py`
+The following options can be given for `test_navigation.py`:
 - `--video` : Navigation video will be saved in `.gif` foramt. Default = False
 - `--mpc_only`: If true, the agent will only use MPC for navigation. Default = False
 - `--num_trajs`: Number of adaptation steps to use. Default = 10
@@ -101,28 +101,26 @@ Followings can be given as options for `test_navigation.py`
 
 ## 4. Build New Tasks
 
-Our environment runs with pre-computed path of each dynamic obstacles. 
+Our environment runs with pre-computed paths of each dynamic obstacles. 
 You can re-generated these scenarios based on our setups by deleting `U.npy` and `X.npy` under `./scenarios`.
 
-To promote faster traing, we trained GPR offline and thus GPR should be re-trained with following command:
+To promote faster traing, you may pretrain GPR offline. This may be done by running
 ```
 python gen_GP.py ./configs/Navigation_MPC.json
 ```
 
-Now it is ready to run algorithm on new tasks.
 
 
+## 5. UCY Dataset
 
-## 5. UCY dataset
+We also demonstrate the proposed method in [**UCY**][UCY] sidwalk environment.
+To use the environment, first unzip `ucy.zip` and move into `./ucy` which has the same structure as MPC-PEARL directory.
 
-In addition, we introduce sidwalk environment with data from [UCY dataset][UCY].
-Unzip the UCY folder and move into `./ucy` which has the same structure as MPC-PEARL directory.
-
-To run an experiment, first build the offline GP dataset.
+To run an experiment, first build the offline GP dataset by running
 ```
 python gen_GP.py ./configs/UCY_MPC.json
 ```
-Then, use the same code with another configuration file.
+Then, use the same code with another configuration file:
 ```
 python launch_experiment.py ./configs/UCY_MPC.json
 ```
@@ -131,14 +129,14 @@ python launch_experiment.py ./configs/UCY_MPC.json
 
 ## 6. Troubleshooting
 
-Most commonly reported problems we found are follows:
+Most commonly reported problems we have found so far are follows:
 
 
 ### 6.1 Memory error when running `test_navigation.py` with `--video` option
 ```
 OSError: [Errno 12] Cannot allocate memory
 ```
-This is gym error. We found solution from [official repo][issue1].
+This is known to be an error from gym, whose solution can be found from [official repo][issue1]:
 ```
 sudo bash -c "echo vm.overcommit_memory=1 >> /etc/sysctl.conf"
 
