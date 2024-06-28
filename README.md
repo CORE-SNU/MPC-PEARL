@@ -1,24 +1,24 @@
 MPC-PEARL
 ====================================================
 
-This repository includes an official python implementation of **MPC-PEARL** algorithm that presented in **[Infusing Model Predictive Control into Meta-Reinforcement Learning
+This repository includes an official python implementation of **MPC-PEARL** algorithm presented in **[Infusing Model Predictive Control into Meta-Reinforcement Learning
 for Mobile Robots in Dynamic Environments][paper_link]**.
 
 
 
 ## 1. Requirements
-Our implementation is based on official repository of [PEARL][PEARL], and followings must be installed to run our implementation:
+Our implementation is based on the official repository of [PEARL][PEARL], and the following must be installed to run our implementation:
 - **[PyTorch][Pytorch]**
 - **[Gym][Gym]**
 - **[GPy][GPy]**
 - **[pickle5][pickle5]**
 - **[FORCESPRO][FORCESPRO]**
 
-To install FORCESPRO, you first need to get a license. If you are currently working as a researcher you can request academic license. For detailed installation guide refer to [official manual][FORCESPRO_manual].
+For FORCESPRO, you first need to activate a FORCESPRO license, which can be done [here][FORCESPRO]. For detailed installation guide, please refer to [official manual][FORCESPRO_manual].
 
-In addition, to run our result analysis tool you need to install additional packages such as [pandas][pandas]. For convenience, we have summarized our test environment into `mpc_pearl.yml` so that the results presented in our paper may be easily reproduced.
+In order to analyze evaluation results, install additional packages such as [pandas][pandas]. For convenience, we have summarized our test environment into `mpc_pearl.yml` so that the results presented in our paper may be easily reproduced.
 
-Our code was successfully tested on both Ubuntu 18.04 and Ubuntu 20.04.
+Our code has been successfully tested on both Ubuntu 18.04 and Ubuntu 20.04.
 
 
 
@@ -31,11 +31,11 @@ As mentioned above, you can easily import requirements if you are working on con
 ```
 conda env create -f mpc_pearl.yml && conda activate mpc_pearl
 ```
-We provide network weights of best-performing agent under `./output/Navigation_MPC/eps02`. You can visualize trained agent navigating in the modeled restaurant with:
+We provide the network weights of best-performing agent under `./output/Navigation_MPC/eps02`. You can visualize the trained agent navigating in a simulated indoor environment with:
 ```
 python test_navigation.py ./configs/Navigation_MPC ./output/Navigation_MPC/eps02 --video --num_trajs=3
 ```
-Navigation video over 25 distinct tasks will be generated under base directory as `.gif` format along with summary of performance metric in `./results_total_[TEST_TIME].csv`.
+The videos on 25 distinct tasks will be generated under the project root directory in `.gif` format, along with the summary of performance metrics in `./results_total_[TEST_TIME].csv`.
 
 
 
@@ -45,7 +45,7 @@ With our default setting, you can run experiment as follows:
 ```
 python launch_experiment.py ./configs/Navigation_MPC.json
 ```
-You can modify hyperparameters of PEARL from `./configs/Navigation_MPC.json` and `./confings/default.py`. For details of each component refer to official implementation of [PEARL][PEARL].
+You can modify the hyperparameters of PEARL from `./configs/Navigation_MPC.json` and `./confings/default.py`. For details of each component, please refer to the official implementation of [PEARL][PEARL].
 
 Additional parameters introduced in our algorithm should be modified manually in `./rlkit/envs/navi_toy.py`.
 ```python
@@ -62,18 +62,17 @@ self.init_state = np.array([-4.5, 4.5, -np.pi / 8.])
 ```
 - `self._obs_reward` : collision penalty when the agent collides with static or dynamic obstacles
 - `self._goal_reward` : reaching bonus when the agent is nearby goal
-We are motivated to further aggregate these into `.json` file, and will be updated very soon.
 
-In addition, vanilla PEARL algorithm can be simply trained by using `./configs/Navivation_WO_MPC.json`
+As a baseline, vanilla PEARL algorithm may be simply trained by running `launch_experiment.py` with `./configs/Navivation_WO_MPC.json`.
 
 
 ### 3.2 Experiment Summary
-During experiment, summary of each training epoch and network weights will be saved under `./output/Navigation_MPC/[EXP_START_TIME]` directory. To see training curve for various peformance metrics, run the following:
+When training, the summary of each training epoch and network weights will be saved under `./output/Navigation_MPC/[EXP_START_TIME]` directory. To see the learning curves for various peformance metrics, run the following:
 ```
 cd output && python plot_summary.py ./Navigation_MPC/[EXP_WANT_TO_SEE]
 ```
 
-You can append more results and you will see the plot of mulitple experiments, such as:
+You can also visualize the results of mulitple experiments by running
 ```
 cd output && python plot_summary.py ./Navigation_MPC/[EXP_WANT_TO_SEE_1], ./Navigation_MPC/[EXP_WANT_TO_SEE_2], ...
 ```
@@ -86,11 +85,11 @@ Plots will contain following performance metrics:
 
 
 ### 3.3 Evaluation and Visualization
-To see how the trained agent navigates among dynamic environments, run the following line:
+To see how the trained agent navigates among dynamic, cluttered environments, run the following line:
 ```
 python test_navigation.py ./configs/Navigation_MPC.json ./output/Navigation_MPC/[EXP_WANT_TO_VISUALIZE]
 ```
-Note that the configuration file should remain the same between trainig and testing. The summary of the result appears in `./results_total_[TEST_TIME].csv`
+Note that the configuration file given as an argument must be the same for both trainig and testing. The summary of the result appears in `./results_total_[TEST_TIME].csv`.
 
 The following options can be given for `test_navigation.py`:
 - `--video` : Navigation video will be saved in `.gif` foramt. Default = False
